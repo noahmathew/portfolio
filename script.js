@@ -17,17 +17,16 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 
 // Projects data - Add your projects here
 const projects = [
-    // Example project structure:
-    // {
-    //     title: "Project Name",
-    //     description: "A brief description of your project and what it does.",
-    //     tags: ["JavaScript", "React", "Node.js"],
-    //     links: {
-    //         github: "https://github.com/username/repo",
-    //         demo: "https://demo-url.com",
-    //         pdf: "path/to/document.pdf"
-    //     }
-    // }
+    {
+        title: "Games Developed in Unity",
+        description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
+        tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
+        links: {
+            // Add your GitHub repo or demo links here when available
+            // github: "https://github.com/username/repo",
+            // demo: "https://demo-url.com"
+        }
+    }
 ];
 
 // Function to create project card
