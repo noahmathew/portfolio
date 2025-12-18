@@ -22,7 +22,7 @@ const projects = [
         description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
         tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
         links: {
-            demo: "https://noahmathew14.itch.io/"
+            "Unity Projects Tab" : "https://noahmathew14.itch.io/"
         }
     },
     {
