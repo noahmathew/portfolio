@@ -24,6 +24,18 @@ const projects = [
         links: {
             demo: "https://noahmathew14.itch.io/"
         }
+    },
+    {
+        title: "RISC-V Single Cycle Processor",
+        description: "Created a RISC-V Single Cycle Processor programmed in Verilog. Created submodules involving the ALU (Arithmetic Logic Unit), Register File, Multiplexer, Flip Flop, Instruction Memory, Data Memory, and more. Used Vivado software environment. (Feb 2024 - Mar 2024)",
+        tags: ["Verilog", "Xilinx Vivado", "Computer Architecture", "RISC-V", "FPGA"],
+        links: {
+            pdfs: [
+                { name: "Control Signals", url: "docs/ RegWrite, ALUSrc_ALUCC_MemRead_MemWrite.pdf" },
+                { name: "Controller & ALU Controller", url: "docs/Controller_ALUController.pdf" },
+                { name: "Data Memory", url: "docs/DataMemory.pdf" }
+            ]
+        }
     }
 ];
 
@@ -69,7 +81,8 @@ function createProjectCard(project) {
             `);
         }
         
-        if (project.links.pdf) {
+        // Handle single PDF (backward compatibility)
+        if (project.links.pdf && typeof project.links.pdf === 'string') {
             linkElements.push(`
                 <a href="${project.links.pdf}" target="_blank" class="project-link secondary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -82,6 +95,25 @@ function createProjectCard(project) {
                     PDF
                 </a>
             `);
+        }
+        
+        // Handle multiple PDFs
+        if (project.links.pdfs && Array.isArray(project.links.pdfs)) {
+            project.links.pdfs.forEach((pdf, index) => {
+                const pdfName = pdf.name || `Document ${index + 1}`;
+                linkElements.push(`
+                    <a href="${pdf.url}" target="_blank" class="project-link secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        ${pdfName}
+                    </a>
+                `);
+            });
         }
 
         if (linkElements.length > 0) {
