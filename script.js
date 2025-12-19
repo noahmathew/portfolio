@@ -22,7 +22,7 @@ const projects = [
         description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
         tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
         links: {
-            name: "Unity Projects Tab", url: "https://noahmathew14.itch.io/"
+            demo: { name: "Unity Projects Tab", url: "https://noahmathew14.itch.io/" }
         }
     },
     {
@@ -69,14 +69,17 @@ function createProjectCard(project) {
         }
         
         if (project.links.demo) {
+            // Support both string URL and object with custom name
+            const demoUrl = typeof project.links.demo === 'string' ? project.links.demo : project.links.demo.url;
+            const demoName = typeof project.links.demo === 'string' ? 'Demo' : (project.links.demo.name || 'Demo');
             linkElements.push(`
-                <a href="${project.links.demo}" target="_blank" class="project-link secondary">
+                <a href="${demoUrl}" target="_blank" class="project-link secondary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                         <polyline points="15 3 21 3 21 9"></polyline>
                         <line x1="10" y1="14" x2="21" y2="3"></line>
                     </svg>
-                    Demo
+                    ${demoName}
                 </a>
             `);
         }
