@@ -92,20 +92,71 @@ Edit the CSS variables in `styles.css` to change the color scheme:
 
 The site uses Google Fonts (Inter). To change the font, update the `<link>` tag in `index.html` and the `font-family` in `styles.css`.
 
-## Deployment
+## Deployment (Free Hosting Options)
 
-### GitHub Pages
+### Option 1: GitHub Pages (Recommended - 100% Free)
 
-1. Push your code to a GitHub repository
-2. Go to Settings > Pages
-3. Select the main branch as the source
-4. Your site will be available at `https://username.github.io/repository-name`
+**Step-by-step instructions:**
 
-### Other Hosting Options
+1. **Create a GitHub repository:**
+   - Go to [GitHub.com](https://github.com) and sign in
+   - Click the "+" icon in the top right → "New repository"
+   - Name it `portfolio` (or any name you prefer)
+   - Make it **Public** (required for free GitHub Pages)
+   - **Don't** initialize with README (we already have one)
+   - Click "Create repository"
 
-- **Netlify**: Drag and drop the folder or connect your Git repository
-- **Vercel**: Import your Git repository
-- **Any static hosting service**: Upload all files to your hosting provider
+2. **Push your code to GitHub:**
+   ```bash
+   # Add your GitHub repository as remote (replace YOUR_USERNAME with your GitHub username)
+   git remote add origin https://github.com/YOUR_USERNAME/portfolio.git
+   
+   # Rename branch to main (GitHub Pages prefers 'main')
+   git branch -M main
+   
+   # Push your code
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages:**
+   - Go to your repository on GitHub
+   - Click **Settings** (top menu)
+   - Scroll down to **Pages** (left sidebar)
+   - Under "Source", select **main** branch
+   - Click **Save**
+   - Wait 1-2 minutes for deployment
+
+4. **Your site is live!**
+   - Visit: `https://YOUR_USERNAME.github.io/portfolio`
+   - It may take a few minutes to go live initially
+
+**Note:** After making changes, just commit and push:
+```bash
+git add .
+git commit -m "Update portfolio"
+git push
+```
+
+### Option 2: Netlify (Free - Drag & Drop)
+
+1. Go to [netlify.com](https://www.netlify.com) and sign up (free)
+2. Drag and drop your `portfolio` folder onto Netlify
+3. Your site is instantly live with a random URL
+4. You can customize the domain name in settings
+
+### Option 3: Vercel (Free)
+
+1. Go to [vercel.com](https://vercel.com) and sign up (free)
+2. Import your GitHub repository
+3. Vercel automatically detects it's a static site
+4. Click deploy - your site is live!
+
+### Option 4: Cloudflare Pages (Free)
+
+1. Go to [pages.cloudflare.com](https://pages.cloudflare.com)
+2. Connect your GitHub repository
+3. Select the repository and branch
+4. Deploy - your site is live!
 
 ## Browser Support
 
