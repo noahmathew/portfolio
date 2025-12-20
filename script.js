@@ -101,6 +101,16 @@ const projects = [
     }
 ];
 
+// Helper function to encode URL paths properly
+function encodeUrlPath(url) {
+    // Split by '/' and encode each part separately
+    return url.split('/').map(part => {
+        // Encode the filename part but keep '/' separators
+        // Use encodeURIComponent for proper encoding of spaces and special chars
+        return encodeURIComponent(part).replace(/%2F/g, '/');
+    }).join('/');
+}
+
 // Function to create project card
 function createProjectCard(project) {
     const card = document.createElement('div');
@@ -149,7 +159,7 @@ function createProjectCard(project) {
         // Handle single PDF (backward compatibility)
         if (project.links.pdf && typeof project.links.pdf === 'string') {
             linkElements.push(`
-                <a href="${project.links.pdf}" target="_blank" class="project-link secondary">
+                <a href="${encodeUrlPath(project.links.pdf)}" target="_blank" class="project-link secondary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
@@ -167,7 +177,7 @@ function createProjectCard(project) {
             project.links.pdfs.forEach((pdf, index) => {
                 const pdfName = pdf.name || `Document ${index + 1}`;
                 linkElements.push(`
-                    <a href="${pdf.url}" target="_blank" class="project-link secondary">
+                    <a href="${encodeUrlPath(pdf.url)}" target="_blank" class="project-link secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
