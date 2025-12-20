@@ -346,9 +346,37 @@ copyButtons.forEach(button => {
     });
 });
 
+// Typewriter animation function
+function typeWriter(element, text, speed = 80) {
+    let i = 0;
+    element.textContent = '';
+    element.classList.add('typing');
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            // Remove typing class and add complete class when done
+            element.classList.remove('typing');
+            element.classList.add('complete');
+        }
+    }
+    
+    type();
+}
+
 // Hero grid item click handlers - scroll to specific project
 document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
+    
+    // Typewriter effect for hero title
+    const heroTitle = document.getElementById('heroTitle');
+    if (heroTitle) {
+        const titleText = "Noah Mathew's Portfolio";
+        typeWriter(heroTitle, titleText, 80);
+    }
     
     // Add click handlers for hero grid items
     const heroGridItems = document.querySelectorAll('.hero-grid-item[data-project]');
