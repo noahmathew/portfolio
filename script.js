@@ -18,22 +18,52 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 // Projects data - Add your projects here
 const projects = [
     {
-        title: "Games Developed in Unity",
-        description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
-        tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
+        title: "4-Bit Up/Down Counter in Cadence Virtuoso",
+        description: "Designed, implemented, and verified a hierarchical 4-bit synchronous up/down counter using custom CMOS logic in Cadence Virtuoso. The design was built from the transistor level upward, beginning with inverter, NAND, OR, and JK flip-flop building blocks, which were then hierarchically integrated to form the complete counter. A single global clock drives all flip-flops, while combinational gating logic controls synchronous up/down counting behavior. Full-custom physical layouts were created for each sub-block with proper transistor sizing, well placement, power routing, and interconnect strategy. The complete design passed Design Rule Check (DRC) and Layout Versus Schematic (LVS) verification, confirming correct device connectivity, pin definitions, and net consistency across hierarchical levels. Parasitic extraction was performed to evaluate post-layout effects. Functional correctness was validated through transient simulations, demonstrating correct binary counting from 0000 → 1111 during up-count mode and 1111 → 0000 during down-count mode, synchronized to the clock signal.",
+        tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "JK Flip-Flop", "Synchronous Design"],
         links: {
-            demo: { name: "Unity Projects Tab", url: "https://noahmathew14.itch.io/" }
+            pdfs: [
+                { name: "See Report", url: "docs/EECS 119 _ Report #4.pdf" }
+            ]
         }
     },
     {
-        title: "RISC-V Single Cycle Processor",
-        description: "Created a RISC-V Single Cycle Processor programmed in Verilog. Created submodules involving the ALU (Arithmetic Logic Unit), Register File, Multiplexer, Flip Flop, Instruction Memory, Data Memory, and more. Used Vivado software environment. (Feb 2024 - Mar 2024)",
-        tags: ["Verilog", "Xilinx Vivado", "Computer Architecture", "RISC-V", "FPGA"],
+        title: "4-Bit Full Adder/Subtractor in Cadence Virtuoso",
+        description: "Designed and implemented a hierarchical 4-bit CMOS ripple-carry full adder in Cadence Virtuoso. Developed transistor-level schematics and layouts for inverters, NAND, and XOR gates, then instantiated them to form a multi-bit adder. Achieved full DRC/LVS clean verification. Simulations validated correct sum and carry propagation, highlighting ripple-carry delay and parasitic effects.",
+        tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "Circuit Design"],
         links: {
             pdfs: [
-                { name: "Control Signals", url: "docs/ RegWrite, ALUSrc_ALUCC_MemRead_MemWrite.pdf" },
-                { name: "Controller & ALU Controller", url: "docs/Controller_ALUController.pdf" },
-                { name: "Data Memory", url: "docs/DataMemory.pdf" }
+                { name: "See Report", url: "docs/_EECS 119 _ Report #3.pdf" }
+            ]
+        }
+    },
+    {
+        title: "UST Hackathon - Smart Healthcare Optimizer",
+        description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
+        tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
+        links: {
+            pdfs: [
+                { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template (1).pptx" }
+            ]
+        }
+    },
+    {
+        title: "Building Management System HVAC",
+        description: "Constructed a makeshift Building Management System that included HVAC functionalities - desired temperature, determining when to turn heater/ac on/off, using API call from OpenWeatherApp to retrieve humidity data and then to calculate the feels like temperature. Implemented Ambient Lighting for when someone enters the room, and a security system for when the door is open/closed and for potential fires. All constructed onto a Raspberry Pi 5, with the freenove kit and implemented using python programming.",
+        tags: ["Python", "Raspberry Pi", "IoT", "HVAC", "API Integration", "Embedded Systems", "Sensors"],
+        links: {
+            pdfs: [
+                { name: "See BMS Report", url: "docs/Noah EECS 113 _ Final Project Report.pdf" }
+            ]
+        }
+    },
+    {
+        title: "Controlling TurtleBot via Imitation Learning in ROS",
+        description: "Built an imitation learning pipeline in ROS to control a TurtleBot using a neural network trained from expert demonstrations. Collected navigation data via RViz and rosbag, converted to CSV, trained an NN controller in Python/Keras, and deployed it in Gazebo. Evaluated performance against MPC using trajectory plots and loss curves.",
+        tags: ["ROS", "Python", "Keras", "Neural Networks", "Imitation Learning", "Robotics", "Gazebo", "RViz"],
+        links: {
+            pdfs: [
+                { name: "See Report", url: "docs/EECS 195 _ Lab 8 Report.pdf" }
             ]
         }
     },
@@ -50,53 +80,23 @@ const projects = [
         }
     },
     {
-        title: "Controlling TurtleBot via Imitation Learning in ROS",
-        description: "Built an imitation learning pipeline in ROS to control a TurtleBot using a neural network trained from expert demonstrations. Collected navigation data via RViz and rosbag, converted to CSV, trained an NN controller in Python/Keras, and deployed it in Gazebo. Evaluated performance against MPC using trajectory plots and loss curves.",
-        tags: ["ROS", "Python", "Keras", "Neural Networks", "Imitation Learning", "Robotics", "Gazebo", "RViz"],
+        title: "RISC-V Single Cycle Processor",
+        description: "Created a RISC-V Single Cycle Processor programmed in Verilog. Created submodules involving the ALU (Arithmetic Logic Unit), Register File, Multiplexer, Flip Flop, Instruction Memory, Data Memory, and more. Used Vivado software environment. (Feb 2024 - Mar 2024)",
+        tags: ["Verilog", "Xilinx Vivado", "Computer Architecture", "RISC-V", "FPGA"],
         links: {
             pdfs: [
-                { name: "Lab Report", url: "docs/EECS 195 _ Lab 8 Report.pdf" }
+                { name: "Control Signals", url: "docs/ RegWrite, ALUSrc_ALUCC_MemRead_MemWrite.pdf" },
+                { name: "Controller & ALU Controller", url: "docs/Controller_ALUController.pdf" },
+                { name: "Data Memory", url: "docs/DataMemory.pdf" }
             ]
         }
     },
     {
-        title: "Building Management System HVAC",
-        description: "Constructed a makeshift Building Management System that included HVAC functionalities - desired temperature, determining when to turn heater/ac on/off, using API call from OpenWeatherApp to retrieve humidity data and then to calculate the feels like temperature. Implemented Ambient Lighting for when someone enters the room, and a security system for when the door is open/closed and for potential fires. All constructed onto a Raspberry Pi 5, with the freenove kit and implemented using python programming.",
-        tags: ["Python", "Raspberry Pi", "IoT", "HVAC", "API Integration", "Embedded Systems", "Sensors"],
+        title: "Games Developed in Unity",
+        description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
+        tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
         links: {
-            pdfs: [
-                { name: "Final Project Report", url: "docs/Noah EECS 113 _ Final Project Report.pdf" }
-            ]
-        }
-    },
-    {
-        title: "UST Hackathon - Smart Healthcare Optimizer",
-        description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
-        tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
-        links: {
-            pdfs: [
-                { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template (1).pptx" }
-            ]
-        }
-    },
-    {
-        title: "4-Bit Full Adder/Subtractor in Cadence Virtuoso",
-        description: "Designed and implemented a hierarchical 4-bit CMOS ripple-carry full adder in Cadence Virtuoso. Developed transistor-level schematics and layouts for inverters, NAND, and XOR gates, then instantiated them to form a multi-bit adder. Achieved full DRC/LVS clean verification. Simulations validated correct sum and carry propagation, highlighting ripple-carry delay and parasitic effects.",
-        tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "Circuit Design"],
-        links: {
-            pdfs: [
-                { name: "Report #3", url: "docs/_EECS 119 _ Report #3.pdf" }
-            ]
-        }
-    },
-    {
-        title: "4-Bit Up/Down Counter in Cadence Virtuoso",
-        description: "Designed, implemented, and verified a hierarchical 4-bit synchronous up/down counter using custom CMOS logic in Cadence Virtuoso. The design was built from the transistor level upward, beginning with inverter, NAND, OR, and JK flip-flop building blocks, which were then hierarchically integrated to form the complete counter. A single global clock drives all flip-flops, while combinational gating logic controls synchronous up/down counting behavior. Full-custom physical layouts were created for each sub-block with proper transistor sizing, well placement, power routing, and interconnect strategy. The complete design passed Design Rule Check (DRC) and Layout Versus Schematic (LVS) verification, confirming correct device connectivity, pin definitions, and net consistency across hierarchical levels. Parasitic extraction was performed to evaluate post-layout effects. Functional correctness was validated through transient simulations, demonstrating correct binary counting from 0000 → 1111 during up-count mode and 1111 → 0000 during down-count mode, synchronized to the clock signal.",
-        tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "JK Flip-Flop", "Synchronous Design"],
-        links: {
-            pdfs: [
-                { name: "Report #4", url: "docs/EECS 119 _ Report #4.pdf" }
-            ]
+            demo: { name: "Unity Projects Tab", url: "https://noahmathew14.itch.io/" }
         }
     }
 ];
