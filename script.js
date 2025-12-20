@@ -247,6 +247,95 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+// Email Modal functionality
+const emailLink = document.getElementById('emailLink');
+const emailModal = document.getElementById('emailModal');
+const emailModalClose = document.querySelector('.email-modal-close');
+const copyButtons = document.querySelectorAll('.copy-btn');
+
+// Open email modal
+if (emailLink) {
+    emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        emailModal.classList.add('active');
+    });
+}
+
+// Close email modal
+if (emailModalClose) {
+    emailModalClose.addEventListener('click', () => {
+        emailModal.classList.remove('active');
+    });
+}
+
+// Close modal when clicking outside
+emailModal.addEventListener('click', (e) => {
+    if (e.target === emailModal) {
+        emailModal.classList.remove('active');
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && emailModal.classList.contains('active')) {
+        emailModal.classList.remove('active');
+    }
+});
+
+// Copy to clipboard functionality
+copyButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+        const email = button.getAttribute('data-email');
+        const originalText = button.innerHTML;
+        
+        try {
+            await navigator.clipboard.writeText(email);
+            
+            // Visual feedback
+            button.classList.add('copied');
+            button.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Copied!
+            `;
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                button.classList.remove('copied');
+                button.innerHTML = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                button.classList.add('copied');
+                button.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                `;
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalText;
+                }, 2000);
+            } catch (fallbackErr) {
+                console.error('Fallback copy failed:', fallbackErr);
+                alert('Failed to copy email. Please copy manually: ' + email);
+            }
+            document.body.removeChild(textArea);
+        }
+    });
+});
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
