@@ -265,7 +265,7 @@ body {
     font-weight: 700;
     margin-bottom: 3rem;
     text-align: center;
-    color: var(--text-primary);
+    color: white;
     position: relative;
     display: inline-block;
     width: 100%;
@@ -308,23 +308,55 @@ body {
 .about-text {
     font-size: 1.125rem;
     line-height: 1.8;
-    color: var(--text-secondary);
+    color: white;
     margin-bottom: 2rem;
     text-align: center;
 }
 
 .interests {
-    background-color: rgba(248, 250, 252, 0.95);
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);
     backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    border-radius: 0;
+    border: 2px solid rgba(59, 130, 246, 0.5);
+    box-shadow: 
+        0 0 20px rgba(59, 130, 246, 0.3),
+        inset 0 0 20px rgba(59, 130, 246, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.interests::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    animation: scan 3s infinite;
+}
+
+@keyframes scan {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .interests h3 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    color: #60a5fa;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .interests-list {
@@ -332,21 +364,48 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .interests-list li {
-    padding: 0.75rem 1rem;
-    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(10px);
-    border-radius: 8px;
-    color: var(--text-secondary);
-    border-left: 3px solid var(--primary-color);
-    transition: var(--transition);
+    border-radius: 0;
+    color: #e0e7ff;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-left: 4px solid #3b82f6;
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-size: 0.9375rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.interests-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0.5rem;
+    color: #3b82f6;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .interests-list li:hover {
-    transform: translateX(5px);
-    box-shadow: var(--shadow);
+    transform: translateX(8px);
+    border-left-color: #60a5fa;
+    border-color: rgba(96, 165, 250, 0.6);
+    box-shadow: 
+        0 0 15px rgba(59, 130, 246, 0.4),
+        inset 0 0 10px rgba(59, 130, 246, 0.1);
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+}
+
+.interests-list li:hover::before {
+    opacity: 1;
 }
 
 /* Projects Section */
@@ -404,6 +463,10 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.projects .project-title {
     color: var(--text-primary);
 }
 
@@ -472,7 +535,28 @@ body {
 /* Contact Section */
 .contact {
     padding: 6rem 0;
-    background-color: var(--bg-primary);
+    background-image: url('images/binary.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.7);
+    z-index: 0;
+}
+
+.contact .container {
+    position: relative;
+    z-index: 1;
 }
 
 .contact-content {
@@ -483,7 +567,7 @@ body {
 
 .contact-content p {
     font-size: 1.125rem;
-    color: var(--text-secondary);
+    color: white;
     margin-bottom: 2rem;
 }
 
@@ -499,19 +583,19 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 500;
     transition: var(--transition);
-    border: 2px solid var(--border-color);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .contact-link:hover {
-    background-color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.3);
     color: white;
-    border-color: var(--primary-color);
+    border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }

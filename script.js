@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTitle = document.getElementById('heroTitle');
     if (heroTitle) {
         const titleText = "Noah Mathew's Portfolio";
-        typeWriter(heroTitle, titleText, 80);
+        typeWriter(heroTitle, titleText, 120); // 50% slower (80ms * 1.5 = 120ms)
     }
     
     // Add click handlers for hero grid items
