@@ -346,9 +346,42 @@ copyButtons.forEach(button => {
     });
 });
 
-// Initialize
+// Hero grid item click handlers - scroll to specific project
 document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
+    
+    // Add click handlers for hero grid items
+    const heroGridItems = document.querySelectorAll('.hero-grid-item[data-project]');
+    heroGridItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectTitle = item.getAttribute('data-project');
+            
+            // Scroll to projects section
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // After scrolling, highlight the specific project
+                setTimeout(() => {
+                    const projectCards = document.querySelectorAll('.project-card');
+                    projectCards.forEach(card => {
+                        const titleElement = card.querySelector('.project-title');
+                        if (titleElement && titleElement.textContent.trim() === projectTitle) {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            card.style.transition = 'all 0.3s ease';
+                            card.style.transform = 'scale(1.05)';
+                            card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                            setTimeout(() => {
+                                card.style.transform = 'scale(1)';
+                                card.style.boxShadow = '';
+                            }, 1000);
+                        }
+                    });
+                }, 500);
+            }
+        });
+    });
 });
 
 // Export function to add projects dynamically (useful for future enhancements)

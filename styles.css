@@ -160,6 +160,8 @@ body {
     background-repeat: no-repeat;
     transition: var(--transition);
     cursor: pointer;
+    text-decoration: none;
+    display: block;
 }
 
 .hero-grid-item:hover {
@@ -240,6 +242,23 @@ body {
 .about-content {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-image-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
 }
 
 .about-text {
@@ -532,6 +551,10 @@ body {
 
     .interests-list {
         grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        max-width: 250px;
     }
 
     .container {
