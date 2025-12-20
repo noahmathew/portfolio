@@ -38,8 +38,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: #1e3a8a;
     box-shadow: var(--shadow);
     z-index: 1000;
     transition: var(--transition);
@@ -50,25 +49,25 @@ body {
     margin: 0 auto;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: none;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--text-primary);
+    color: white;
     font-weight: 500;
     transition: var(--transition);
     position: relative;
@@ -81,12 +80,16 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: white;
     transition: var(--transition);
 }
 
 .nav-menu a:hover::after {
     width: 100%;
+}
+
+.nav-menu a:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .hamburger {
@@ -99,7 +102,7 @@ body {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background-color: var(--text-primary);
+    background-color: white;
     transition: var(--transition);
 }
 
@@ -149,18 +152,6 @@ body {
     z-index: 10;
 }
 
-.hero-title-overlay {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    z-index: 20;
-    text-align: left;
-    letter-spacing: -0.02em;
-}
 
 .hero-title {
     font-size: 4rem;
@@ -432,12 +423,16 @@ body {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: white;
+        background-color: #1e3a8a;
         width: 100%;
         text-align: center;
         transition: 0.3s;
         box-shadow: var(--shadow);
         padding: 2rem 0;
+    }
+    
+    .nav-menu a {
+        color: white;
     }
 
     .nav-menu.active {
@@ -469,11 +464,6 @@ body {
         gap: 0;
     }
 
-    .hero-title-overlay {
-        font-size: 1.75rem;
-        top: 1rem;
-        left: 1rem;
-    }
 
     .hero-title {
         font-size: 2.5rem;
