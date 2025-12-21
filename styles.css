@@ -401,14 +401,11 @@ body {
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: row;
-    min-height: 300px;
-    overflow: hidden;
+    min-height: 400px;
+    overflow: visible;
     position: relative;
-}
-
-.project-card {
-    background-size: cover;
-    background-position: center;
+    background-size: contain;
+    background-position: right center;
     background-repeat: no-repeat;
 }
 
