@@ -426,7 +426,7 @@ body {
     position: relative;
     z-index: 1;
     padding: 3rem;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(10px);
     flex: 0 0 45%;
     display: flex;
@@ -444,15 +444,15 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
+    color: white;
 }
 
 .projects .project-title {
-    color: var(--text-primary);
+    color: white;
 }
 
 .project-description {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1.5rem;
     flex-grow: 1;
     line-height: 1.6;
@@ -484,12 +484,14 @@ body {
 }
 
 .project-link.secondary {
-    background-color: var(--bg-tertiary);
-    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .project-link.secondary:hover {
-    background-color: var(--border-color);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .project-link svg {
@@ -506,8 +508,8 @@ body {
 
 .project-tag {
     padding: 0.25rem 0.75rem;
-    background-color: var(--bg-tertiary);
-    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 500;
