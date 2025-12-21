@@ -426,13 +426,14 @@ body {
     position: relative;
     z-index: 1;
     padding: 3rem;
-    background: rgba(15, 23, 42, 0.95);
+    background: #0f172a;
     backdrop-filter: blur(10px);
     flex: 0 0 45%;
     display: flex;
     flex-direction: column;
     max-width: 45%;
     min-width: 45%;
+    color: white;
 }
 
 .project-card:hover {
@@ -440,19 +441,21 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.project-card-content .project-title,
 .project-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: white;
+    color: white !important;
 }
 
 .projects .project-title {
-    color: white;
+    color: white !important;
 }
 
+.project-card-content .project-description,
 .project-description {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9) !important;
     margin-bottom: 1.5rem;
     flex-grow: 1;
     line-height: 1.6;
