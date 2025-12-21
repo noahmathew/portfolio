@@ -124,10 +124,16 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
     
-    // Apply background image if available
+    // Apply background image if available using ::before pseudo-element
     if (project.backgroundImage) {
-        card.style.setProperty('--bg-image', `url('${project.backgroundImage}')`);
-        card.style.backgroundImage = `url('${project.backgroundImage}')`;
+        const style = document.createElement('style');
+        style.textContent = `
+            .project-card[data-bg="${project.backgroundImage}"]::before {
+                background-image: url('${project.backgroundImage}');
+            }
+        `;
+        document.head.appendChild(style);
+        card.setAttribute('data-bg', project.backgroundImage);
     }
 
     let tagsHTML = '';
