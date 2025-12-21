@@ -71,11 +71,11 @@
                     <div class="interests">
                         <h3>Interests</h3>
                         <ul class="interests-list">
-                            <li>IoT technologies/Embedded Software</li>
-                            <li>Firmware Engineering</li>
-                            <li>CAD Design; 3D Modeling</li>
-                            <li>Computer Architecture; Semiconductors</li>
-                            <li>AI/ML</li>
+                            <li data-interest="iot">IoT technologies/Embedded Software</li>
+                            <li data-interest="firmware">Firmware Engineering</li>
+                            <li data-interest="cad">CAD Design; 3D Modeling</li>
+                            <li data-interest="architecture">Computer Architecture; Semiconductors</li>
+                            <li data-interest="ai">AI/ML</li>
                         </ul>
                     </div>
                 </div>
@@ -153,6 +153,15 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Interest Modal -->
+    <div id="interestModal" class="interest-modal">
+        <div class="interest-modal-content">
+            <span class="interest-modal-close">&times;</span>
+            <h3 id="interestModalTitle"></h3>
+            <p id="interestModalText"></p>
         </div>
     </div>
 

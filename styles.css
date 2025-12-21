@@ -344,6 +344,7 @@ body {
     font-size: 0.9375rem;
     position: relative;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .interests-list li:hover {
@@ -385,8 +386,8 @@ body {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 4rem;
     margin-top: 3rem;
 }
 
@@ -394,12 +395,34 @@ body {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 12px;
-    padding: 2rem;
+    padding: 0;
     box-shadow: var(--shadow);
     transition: var(--transition);
     border: 1px solid var(--border-color);
     display: flex;
+    flex-direction: row;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.project-card-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    flex: 1;
+    display: flex;
     flex-direction: column;
+    max-width: 60%;
+    min-width: 50%;
 }
 
 .project-card:hover {
@@ -565,6 +588,74 @@ body {
     opacity: 0.8;
 }
 
+/* Interest Modal */
+.interest-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.interest-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interest-modal-content {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    max-width: 700px;
+    width: 90%;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    border: 2px solid rgba(59, 130, 246, 0.5);
+}
+
+.interest-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #60a5fa;
+    cursor: pointer;
+    transition: var(--transition);
+    line-height: 1;
+}
+
+.interest-modal-close:hover {
+    color: white;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+}
+
+.interest-modal-content h3 {
+    margin-bottom: 1.5rem;
+    color: #60a5fa;
+    font-size: 1.75rem;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}
+
+.interest-modal-content p {
+    color: #e0e7ff;
+    font-size: 1rem;
+    line-height: 1.8;
+    font-family: 'Inter', sans-serif;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -662,6 +753,20 @@ body {
 
     .about-image {
         max-width: 250px;
+    }
+
+    .projects-grid {
+        gap: 3rem;
+    }
+
+    .project-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .project-card-content {
+        max-width: 100%;
+        min-width: 100%;
     }
 
     .interests-list {

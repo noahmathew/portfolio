@@ -21,6 +21,7 @@ const projects = [
         title: "4-Bit Up/Down Counter in Cadence Virtuoso",
         description: "Designed, implemented, and verified a hierarchical 4-bit synchronous up/down counter using custom CMOS logic in Cadence Virtuoso. The design was built from the transistor level upward, beginning with inverter, NAND, OR, and JK flip-flop building blocks, which were then hierarchically integrated to form the complete counter. A single global clock drives all flip-flops, while combinational gating logic controls synchronous up/down counting behavior. Full-custom physical layouts were created for each sub-block with proper transistor sizing, well placement, power routing, and interconnect strategy. The complete design passed Design Rule Check (DRC) and Layout Versus Schematic (LVS) verification, confirming correct device connectivity, pin definitions, and net consistency across hierarchical levels. Parasitic extraction was performed to evaluate post-layout effects. Functional correctness was validated through transient simulations, demonstrating correct binary counting from 0000 → 1111 during up-count mode and 1111 → 0000 during down-count mode, synchronized to the clock signal.",
         tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "JK Flip-Flop", "Synchronous Design"],
+        backgroundImage: "images/updownproject.png",
         links: {
             pdfs: [
                 { name: "See Report", url: "docs/EECS 119 _ Report #4.pdf" }
@@ -31,6 +32,7 @@ const projects = [
         title: "4-Bit Full Adder/Subtractor in Cadence Virtuoso",
         description: "Designed and implemented a hierarchical 4-bit CMOS ripple-carry full adder in Cadence Virtuoso. Developed transistor-level schematics and layouts for inverters, NAND, and XOR gates, then instantiated them to form a multi-bit adder. Achieved full DRC/LVS clean verification. Simulations validated correct sum and carry propagation, highlighting ripple-carry delay and parasitic effects.",
         tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "Circuit Design"],
+        backgroundImage: "images/4faproject.png",
         links: {
             pdfs: [
                 { name: "See Report", url: "docs/_EECS 119 _ Report #3.pdf" }
@@ -41,6 +43,7 @@ const projects = [
         title: "UST Hackathon - Smart Healthcare Optimizer",
         description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
         tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
+        backgroundImage: "images/d3project.png",
         links: {
             pdfs: [
                 { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template (1).pptx" }
@@ -51,6 +54,7 @@ const projects = [
         title: "Building Management System HVAC",
         description: "Constructed a makeshift Building Management System that included HVAC functionalities - desired temperature, determining when to turn heater/ac on/off, using API call from OpenWeatherApp to retrieve humidity data and then to calculate the feels like temperature. Implemented Ambient Lighting for when someone enters the room, and a security system for when the door is open/closed and for potential fires. All constructed onto a Raspberry Pi 5, with the freenove kit and implemented using python programming.",
         tags: ["Python", "Raspberry Pi", "IoT", "HVAC", "API Integration", "Embedded Systems", "Sensors"],
+        backgroundImage: "images/113project.png",
         links: {
             pdfs: [
                 { name: "See BMS Report", url: "docs/Noah EECS 113 _ Final Project Report.pdf" }
@@ -61,6 +65,7 @@ const projects = [
         title: "Controlling TurtleBot via Imitation Learning in ROS",
         description: "Built an imitation learning pipeline in ROS to control a TurtleBot using a neural network trained from expert demonstrations. Collected navigation data via RViz and rosbag, converted to CSV, trained an NN controller in Python/Keras, and deployed it in Gazebo. Evaluated performance against MPC using trajectory plots and loss curves.",
         tags: ["ROS", "Python", "Keras", "Neural Networks", "Imitation Learning", "Robotics", "Gazebo", "RViz"],
+        backgroundImage: "images/rosproject.png",
         links: {
             pdfs: [
                 { name: "See Report", url: "docs/EECS 195 _ Lab 8 Report.pdf" }
@@ -71,6 +76,7 @@ const projects = [
         title: "Software Engineering Team Project in C",
         description: "Chess Game: Was responsible in creating Computer decision-making logic. Implemented using the minimax algorithm and alpha-beta pruning. Online Poker Game: Was responsible in establishing client-server communication. Applied socket programming skills and the fundamentals of TCP protocols.",
         tags: ["C", "Algorithms", "Minimax", "Alpha-Beta Pruning", "Socket Programming", "TCP", "Client-Server"],
+        backgroundImage: "images/softwarecprojects.png",
         links: {
             pdfs: [
                 { name: "Chess User Manual", url: "docs/Chess_UserManual v0.0.pdf" },
@@ -83,6 +89,7 @@ const projects = [
         title: "RISC-V Single Cycle Processor",
         description: "Created a RISC-V Single Cycle Processor programmed in Verilog. Created submodules involving the ALU (Arithmetic Logic Unit), Register File, Multiplexer, Flip Flop, Instruction Memory, Data Memory, and more. Used Vivado software environment. (Feb 2024 - Mar 2024)",
         tags: ["Verilog", "Xilinx Vivado", "Computer Architecture", "RISC-V", "FPGA"],
+        backgroundImage: "images/riscvproject.png",
         links: {
             pdfs: [
                 { name: "Control Signals", url: "docs/ RegWrite, ALUSrc_ALUCC_MemRead_MemWrite.pdf" },
@@ -95,6 +102,7 @@ const projects = [
         title: "Games Developed in Unity",
         description: "Created 2D and 3D games both platformer and shooter games. Used the Unity engine and C# scripting using Unity documentation and .NET libraries. (Sep 2021 - Jan 2022)",
         tags: ["Unity", "C#", "Game Development", "2D", "3D", ".NET"],
+        backgroundImage: "images/unityprojects.png",
         links: {
             demo: { name: "Unity Projects Tab", url: "https://noahmathew14.itch.io/" }
         }
@@ -115,6 +123,12 @@ function encodeUrlPath(url) {
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
+    
+    // Apply background image if available
+    if (project.backgroundImage) {
+        card.style.setProperty('--bg-image', `url('${project.backgroundImage}')`);
+        card.style.backgroundImage = `url('${project.backgroundImage}')`;
+    }
 
     let tagsHTML = '';
     if (project.tags && project.tags.length > 0) {
@@ -197,10 +211,12 @@ function createProjectCard(project) {
     }
 
     card.innerHTML = `
-        ${tagsHTML}
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-description">${project.description}</p>
-        ${linksHTML}
+        <div class="project-card-content">
+            ${tagsHTML}
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            ${linksHTML}
+        </div>
     `;
 
     return card;
@@ -285,10 +301,16 @@ emailModal.addEventListener('click', (e) => {
     }
 });
 
-// Close modal with Escape key
+// Close modals with Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && emailModal.classList.contains('active')) {
-        emailModal.classList.remove('active');
+    if (e.key === 'Escape') {
+        if (emailModal && emailModal.classList.contains('active')) {
+            emailModal.classList.remove('active');
+        }
+        const interestModal = document.getElementById('interestModal');
+        if (interestModal && interestModal.classList.contains('active')) {
+            interestModal.classList.remove('active');
+        }
     }
 });
 
@@ -367,6 +389,30 @@ function typeWriter(element, text, speed = 80) {
     type();
 }
 
+// Interest Modal functionality
+const interestData = {
+    iot: {
+        title: "IoT Technologies/Embedded Software",
+        description: "My interests center on IoT technologies and embedded software with a focus on building low power real time systems that integrate sensing computation and intelligent decision making at the edge. Through academic coursework and industry experience I have worked close to the hardware developing firmware interfacing sensors and peripherals and optimizing performance under resource constraints. I am particularly interested in embedded Linux microcontroller based systems and distributed computing architectures optimized for deploying AI applications."
+    },
+    firmware: {
+        title: "Firmware Engineering",
+        description: "My interests center on firmware engineering with a focus on designing reliable low power real time software that operates close to the hardware. Through academic coursework and industry experience I have developed embedded firmware for microcontrollers and embedded Linux systems including device configuration peripheral control and sensor interfacing. I am particularly interested in writing efficient maintainable firmware that manages memory timing and hardware resources while supporting scalable and intelligent system level behavior."
+    },
+    cad: {
+        title: "CAD Design; 3D Modeling",
+        description: "My interests center on CAD design and 3D modeling with a focus on creating accurate functional representations of hardware systems for prototyping simulation and deployment. Through academic and industry experience I have applied these skills across multiple domains including game design and simulation in Unity 3D modeling and automation in Blender and hardware design using Cadence and Vivado. I am particularly interested in integrating three dimensional and electronic design workflows with system level constraints such as manufacturability hardware integration and performance optimization to support reliable and scalable system development."
+    },
+    architecture: {
+        title: "Computer Architecture; Semiconductors",
+        description: "My interests center on computer architecture and semiconductor systems with a focus on understanding how hardware organization impacts performance efficiency and reliability. Through academic coursework and hands-on projects I have designed CMOS circuits using Cadence observed transistor behavior using LTSpice and developed a RISC V processor at the architectural level using Verilog and Vivado. I am particularly interested in system on chip architectures where architectural decisions circuit level tradeoffs and semiconductor constraints converge to enable scalable high performance computing platforms."
+    },
+    ai: {
+        title: "AI/ML",
+        description: "My interests center on artificial intelligence and machine learning with a focus on building practical models that integrate data driven learning with real world systems. Through academic coursework and industry experience I have trained and evaluated machine learning models for classification regression and prediction tasks including work on a tumor classification project that combined language based models with medical imaging analysis as well as academic projects applying imitation learning in ROS for robotic control. I am particularly interested in applying AI models in resource constrained and edge computing environments where efficiency interpretability and system integration are critical to deploying reliable intelligent systems."
+    }
+};
+
 // Hero grid item click handlers - scroll to specific project
 document.addEventListener('DOMContentLoaded', () => {
     renderProjects();
@@ -410,6 +456,85 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    // Interest Modal functionality
+    const interestModal = document.getElementById('interestModal');
+    const interestModalClose = document.querySelector('.interest-modal-close');
+    const interestModalTitle = document.getElementById('interestModalTitle');
+    const interestModalText = document.getElementById('interestModalText');
+    
+    // Add click handlers for interest items
+    const interestItems = document.querySelectorAll('.interests-list li[data-interest]');
+    interestItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const interestKey = item.getAttribute('data-interest');
+            const interest = interestData[interestKey];
+            
+            if (interest) {
+                interestModalTitle.textContent = interest.title;
+                interestModalText.textContent = interest.description;
+                interestModal.classList.add('active');
+            }
+        });
+    });
+    
+    // Close interest modal
+    if (interestModalClose) {
+        interestModalClose.addEventListener('click', () => {
+            interestModal.classList.remove('active');
+        });
+    }
+    
+    // Close modal when clicking outside
+    if (interestModal) {
+        interestModal.addEventListener('click', (e) => {
+            if (e.target === interestModal) {
+                interestModal.classList.remove('active');
+            }
+        });
+    }
+    
+    // Close modal with Escape key (already handled globally, but ensure it works)
+});
+
+// Add click handlers for interest items
+document.addEventListener('DOMContentLoaded', () => {
+    const interestItems = document.querySelectorAll('.interests-list li[data-interest]');
+    interestItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const interestKey = item.getAttribute('data-interest');
+            const interest = interestData[interestKey];
+            
+            if (interest) {
+                interestModalTitle.textContent = interest.title;
+                interestModalText.textContent = interest.description;
+                interestModal.classList.add('active');
+            }
+        });
+    });
+});
+
+// Close interest modal
+if (interestModalClose) {
+    interestModalClose.addEventListener('click', () => {
+        interestModal.classList.remove('active');
+    });
+}
+
+// Close modal when clicking outside
+if (interestModal) {
+    interestModal.addEventListener('click', (e) => {
+        if (e.target === interestModal) {
+            interestModal.classList.remove('active');
+        }
+    });
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && interestModal.classList.contains('active')) {
+        interestModal.classList.remove('active');
+    }
 });
 
 // Export function to add projects dynamically (useful for future enhancements)
