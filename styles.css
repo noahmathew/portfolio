@@ -426,14 +426,30 @@ body {
     position: relative;
     z-index: 1;
     padding: 3rem;
-    background: #0f172a;
+    background: #000000 !important;
     backdrop-filter: blur(10px);
     flex: 0 0 45%;
     display: flex;
     flex-direction: column;
     max-width: 45%;
     min-width: 45%;
-    color: white;
+    color: white !important;
+}
+
+.project-card-content * {
+    color: white !important;
+}
+
+.project-card-content .project-description {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.project-card-content .project-link {
+    color: white !important;
+}
+
+.project-card-content .project-link.secondary {
+    color: white !important;
 }
 
 .project-card:hover {
@@ -502,11 +518,13 @@ body {
     height: 18px;
 }
 
+.project-card-content .project-tags,
 .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    color: white;
 }
 
 .project-tag {
