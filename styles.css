@@ -427,6 +427,7 @@ body {
     z-index: 1;
     padding: 3rem;
     background: #000000 !important;
+    background-color: #000000 !important;
     backdrop-filter: blur(10px);
     flex: 0 0 45%;
     display: flex;
@@ -436,19 +437,49 @@ body {
     color: white !important;
 }
 
-.project-card-content * {
+/* Force black background and white text for all project card content */
+.projects .project-card .project-card-content {
+    background: #000000 !important;
+    background-color: #000000 !important;
     color: white !important;
 }
 
-.project-card-content .project-description {
+.projects .project-card .project-card-content * {
+    color: white !important;
+}
+
+.project-card-content *,
+.project-card-content h3,
+.project-card-content h3.project-title,
+.project-card-content p,
+.project-card-content p.project-description,
+.project-card-content div,
+.project-card-content div.project-tags,
+.project-card-content span,
+.project-card-content span.project-tag,
+.project-card-content a,
+.project-card-content a.project-link {
+    color: white !important;
+}
+
+.project-card-content .project-description,
+.project-card-content p.project-description {
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.project-card-content .project-link {
+.project-card-content .project-link,
+.project-card-content a.project-link {
     color: white !important;
 }
 
-.project-card-content .project-link.secondary {
+.project-card-content .project-link.secondary,
+.project-card-content a.project-link.secondary {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.project-card-content .project-link.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
     color: white !important;
 }
 
@@ -983,4 +1014,5 @@ html {
         transform: translateY(0);
     }
 }
+
 
