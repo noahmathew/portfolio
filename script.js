@@ -46,7 +46,7 @@ const projects = [
         backgroundImage: "images/d3project.png",
         links: {
             pdfs: [
-                { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template (1).pptx" }
+                { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template.pptx.pdf" }
             ]
         }
     },
@@ -196,20 +196,26 @@ function createProjectCard(project) {
         if (project.links.pdfs && Array.isArray(project.links.pdfs)) {
             project.links.pdfs.forEach((pdf, index) => {
                 const pdfName = pdf.name || `Document ${index + 1}`;
-                const fileUrl = encodeUrlPath(pdf.url);
-                
-                // Check if it's a PPTX file - use Google Slides viewer
-                const isPptx = fileUrl.toLowerCase().endsWith('.pptx');
+                const rawUrl = pdf.url;
+                const fileUrl = encodeUrlPath(rawUrl);
+                // Check original URL - .pdf takes priority (e.g. "file.pptx.pdf" is a PDF)
+                const isPdf = rawUrl.toLowerCase().endsWith('.pdf');
+                const isPptx = !isPdf && rawUrl.toLowerCase().endsWith('.pptx');
                 let finalUrl = fileUrl;
                 
-                if (isPptx) {
-                    // Get the full absolute URL for Google Slides viewer
+                if (isPdf) {
+                    finalUrl = '#';
+                } else if (isPptx) {
                     const absoluteUrl = new URL(fileUrl, window.location.origin).href;
-                    finalUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+                    finalUrl = `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(absoluteUrl)}`;
                 }
                 
+                const pdfDataAttr = isPdf ? ` data-pdf-url="${fileUrl}"` : '';
+                const linkClass = isPdf ? 'project-link secondary pdf-viewer-link' : 'project-link secondary';
+                const targetAttr = isPdf ? '' : ' target="_blank" rel="noopener noreferrer"';
+                
                 linkElements.push(`
-                    <a href="${finalUrl}" target="_blank" rel="noopener noreferrer" class="project-link secondary">
+                    <a href="${finalUrl}" class="${linkClass}"${pdfDataAttr}${targetAttr}>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
@@ -328,6 +334,12 @@ document.addEventListener('keydown', (e) => {
         const interestModal = document.getElementById('interestModal');
         if (interestModal && interestModal.classList.contains('active')) {
             interestModal.classList.remove('active');
+        }
+        const pdfModal = document.getElementById('pdfModal');
+        if (pdfModal && pdfModal.classList.contains('active')) {
+            pdfModal.classList.remove('active');
+            const pdfModalFrame = document.getElementById('pdfModalFrame');
+            if (pdfModalFrame) pdfModalFrame.src = '';
         }
     }
 });
@@ -513,6 +525,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Close modal with Escape key (already handled globally, but ensure it works)
+    
+    // PDF Viewer Modal - use event delegation for dynamically created links
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfModalFrame = document.getElementById('pdfModalFrame');
+    const pdfModalClose = document.querySelector('.pdf-modal-close');
+    
+    document.addEventListener('click', (e) => {
+        const pdfLink = e.target.closest('.pdf-viewer-link');
+        if (pdfLink) {
+            e.preventDefault();
+            const pdfUrl = pdfLink.getAttribute('data-pdf-url');
+            if (pdfUrl && pdfModal && pdfModalFrame) {
+                pdfModalFrame.src = pdfUrl;
+                pdfModal.classList.add('active');
+            }
+        }
+    });
+    
+    if (pdfModalClose) {
+        pdfModalClose.addEventListener('click', () => {
+            pdfModal.classList.remove('active');
+            if (pdfModalFrame) pdfModalFrame.src = '';
+        });
+    }
+    
+    if (pdfModal) {
+        pdfModal.addEventListener('click', (e) => {
+            if (e.target === pdfModal) {
+                pdfModal.classList.remove('active');
+                if (pdfModalFrame) pdfModalFrame.src = '';
+            }
+        });
+    }
 });
 
 // Add click handlers for interest items
