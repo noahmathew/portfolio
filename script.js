@@ -44,6 +44,8 @@ const projects = [
         description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
         tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
         backgroundImage: "images/d3project.png",
+        video: "demo_d3 (1).mp4",
+        videoPoster: "d3image.png",
         links: {
             pdfs: [
                 { name: "Hackathon Presentation", url: "docs/2025 D3CODE - Hackathon Presentation Template.pptx.pdf" }
@@ -124,8 +126,13 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
     
-    // Apply background image if available using ::before pseudo-element
-    if (project.backgroundImage) {
+    // Use video for display if available, otherwise background image
+    const hasVideo = project.video;
+    if (hasVideo) {
+        card.setAttribute('data-has-video', 'true');
+        card.setAttribute('data-video-url', encodeUrlPath(project.video));
+        card.setAttribute('data-video-poster', project.videoPoster ? encodeUrlPath(project.videoPoster) : '');
+    } else if (project.backgroundImage) {
         const style = document.createElement('style');
         style.textContent = `
             .project-card[data-bg="${project.backgroundImage}"]::before {
@@ -160,6 +167,16 @@ function createProjectCard(project) {
             `);
         }
         
+        if (project.video) {
+            linkElements.push(`
+                <a href="#" class="project-link secondary video-modal-trigger" data-video-url="${encodeUrlPath(project.video)}" data-video-poster="${project.videoPoster ? encodeUrlPath(project.videoPoster) : ''}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Watch Demo
+                </a>
+            `);
+        }
         if (project.links.demo) {
             // Support both string URL and object with custom name
             const demoUrl = typeof project.links.demo === 'string' ? project.links.demo : project.links.demo.url;
@@ -234,6 +251,21 @@ function createProjectCard(project) {
         }
     }
 
+    const videoHTML = hasVideo ? `
+        <div class="project-card-video">
+            <video poster="${project.videoPoster ? encodeUrlPath(project.videoPoster) : ''}" muted loop playsinline>
+                <source src="${encodeUrlPath(project.video)}" type="video/mp4">
+            </video>
+            <div class="project-card-video-overlay">
+                <button type="button" class="project-card-video-play video-modal-trigger" data-video-url="${encodeUrlPath(project.video)}" data-video-poster="${project.videoPoster ? encodeUrlPath(project.videoPoster) : ''}" aria-label="Watch demo video">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    ` : '';
+
     card.innerHTML = `
         <div class="project-card-content">
             ${tagsHTML}
@@ -241,6 +273,7 @@ function createProjectCard(project) {
             <p class="project-description">${project.description}</p>
             ${linksHTML}
         </div>
+        ${videoHTML}
     `;
 
     return card;
@@ -340,6 +373,17 @@ document.addEventListener('keydown', (e) => {
             pdfModal.classList.remove('active');
             const pdfModalFrame = document.getElementById('pdfModalFrame');
             if (pdfModalFrame) pdfModalFrame.src = '';
+        }
+        const videoModal = document.getElementById('videoModal');
+        if (videoModal && videoModal.classList.contains('active')) {
+            videoModal.classList.remove('active');
+            const videoPlayer = document.getElementById('videoModalPlayer');
+            if (videoPlayer) {
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            }
+            const videoSource = document.getElementById('videoModalSource');
+            if (videoSource) videoSource.src = '';
         }
     }
 });
@@ -540,6 +584,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 pdfModalFrame.src = pdfUrl;
                 pdfModal.classList.add('active');
             }
+            return;
+        }
+        const videoTrigger = e.target.closest('.video-modal-trigger');
+        if (videoTrigger) {
+            e.preventDefault();
+            const videoUrl = videoTrigger.getAttribute('data-video-url');
+            const videoModal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoModalPlayer');
+            const videoSource = document.getElementById('videoModalSource');
+            if (videoUrl && videoModal && videoPlayer && videoSource) {
+                videoSource.src = videoUrl;
+                videoPlayer.load();
+                videoModal.classList.add('active');
+                videoPlayer.play();
+            }
         }
     });
     
@@ -556,6 +615,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 pdfModal.classList.remove('active');
                 if (pdfModalFrame) pdfModalFrame.src = '';
             }
+        });
+    }
+    
+    // Video modal close
+    const videoModal = document.getElementById('videoModal');
+    const videoModalClose = document.querySelector('.video-modal-close');
+    const videoModalPlayer = document.getElementById('videoModalPlayer');
+    
+    function closeVideoModal() {
+        if (videoModal) videoModal.classList.remove('active');
+        if (videoModalPlayer) {
+            videoModalPlayer.pause();
+            videoModalPlayer.currentTime = 0;
+            const src = document.getElementById('videoModalSource');
+            if (src) src.src = '';
+        }
+    }
+    
+    if (videoModalClose) {
+        videoModalClose.addEventListener('click', closeVideoModal);
+    }
+    if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeVideoModal();
         });
     }
 });
