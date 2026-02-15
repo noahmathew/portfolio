@@ -44,7 +44,7 @@ const projects = [
         description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
         tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
         backgroundImage: "images/d3project.png",
-        video: "demo_d3 (1).mp4",
+        video: "demo_d3_compressed.mp4",
         videoPoster: "d3image.png",
         links: {
             pdfs: [
