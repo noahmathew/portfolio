@@ -201,7 +201,7 @@ function createProjectCard(project) {
                 </a>
             `);
         }
-        if (project.links.youtube) {
+        if (project.links.youtube && !project.youtubeCardVideo) {
             const yt = project.links.youtube;
             const videoId = yt.videoId || (yt.url && yt.url.match(/(?:v=|\/)([\w-]{11})(?:[\?&]|$)/)?.[1]);
             const startTime = yt.startTime || 0;
