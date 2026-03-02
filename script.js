@@ -24,6 +24,7 @@ const projects = [
         backgroundImage: "images/113project.png",
         youtubeCardVideo: true,
         links: {
+            demo: { name: "View Argus's Website", url: "https://noahmathew.github.io/SeniorWeb_EdgeCompute/" },
             pdfs: [
                 { name: "Project Poster", url: "docs/MEC_Poster_EECS159B.pdf" }
             ],
