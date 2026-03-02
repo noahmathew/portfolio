@@ -536,6 +536,13 @@ document.addEventListener('DOMContentLoaded', () => {
         typeWriter(heroTitle, titleText, 180); // Slower (120ms * 1.5 = 180ms)
     }
     
+    // Ensure D3 hero grid video autoplays
+    const d3HeroVideo = document.querySelector('.hero-grid-item-video video');
+    if (d3HeroVideo) {
+        d3HeroVideo.muted = true;
+        d3HeroVideo.play().catch(() => {});
+    }
+    
     // Add click handlers for hero grid items
     const heroGridItems = document.querySelectorAll('.hero-grid-item[data-project]');
     heroGridItems.forEach(item => {
