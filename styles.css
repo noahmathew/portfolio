@@ -187,6 +187,28 @@ body {
     display: block;
 }
 
+.hero-grid-item-video video,
+.hero-grid-item-youtube iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.hero-grid-item-youtube iframe {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+}
+
 .hero-grid-item:hover {
     transform: scale(1.02);
     z-index: 10;
@@ -204,6 +226,7 @@ body {
     justify-content: center;
     opacity: 0;
     transition: var(--transition);
+    z-index: 2;
 }
 
 .hero-grid-item:hover .hero-hover-overlay {
@@ -749,7 +772,8 @@ body {
     animation: slideUp 0.3s ease;
 }
 
-.video-modal-content video {
+.video-modal-content video,
+.video-modal-content iframe {
     width: 100%;
     height: 100%;
     display: block;
@@ -769,9 +793,24 @@ body {
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
 }
 
-.video-modal-close:hover {
+.video-modal-close:hover,
+.youtube-modal-close:hover {
     color: #60a5fa;
     transform: scale(1.1);
+}
+
+.youtube-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+    line-height: 1;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
 }
 
 /* PDF Viewer Modal */

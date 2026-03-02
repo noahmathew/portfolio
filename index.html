@@ -32,14 +32,18 @@
             <div class="hero-content">
                 <h1 class="hero-main-title" id="heroTitle"></h1>
                 <div class="hero-grid">
-                    <a href="#projects" class="hero-grid-item" style="background-image: url('images/31L.png');" data-project="RISC-V Single Cycle Processor">
+                    <a href="#projects" class="hero-grid-item hero-grid-item-youtube" data-project="Multi-Modal Edge Computing Platform (Senior Design)">
+                        <iframe src="https://www.youtube.com/embed/OcZIMFXcgA0?autoplay=1&cc_load_policy=1&loop=1&playlist=OcZIMFXcgA0&mute=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div class="hero-hover-overlay">
-                            <p class="hero-hover-text">See more on RISC-V Single Cycle Processor</p>
+                            <p class="hero-hover-text">See more on Argus</p>
                         </div>
                     </a>
-                    <a href="#projects" class="hero-grid-item" style="background-image: url('images/113.png');" data-project="Building Management System HVAC">
+                    <a href="#projects" class="hero-grid-item hero-grid-item-video" data-project="UST Hackathon - Smart Healthcare Optimizer">
+                        <video autoplay muted loop playsinline>
+                            <source src="demo_d3_compressed.mp4" type="video/mp4">
+                        </video>
                         <div class="hero-hover-overlay">
-                            <p class="hero-hover-text">See more on BMS System for an HVAC</p>
+                            <p class="hero-hover-text">See more about Grover's Algorithm in my D3 Hackathon Details</p>
                         </div>
                     </a>
                     <a href="#projects" class="hero-grid-item" style="background-image: url('images/119_L.png');" data-project="4-Bit Up/Down Counter in Cadence Virtuoso">
@@ -47,9 +51,9 @@
                             <p class="hero-hover-text">See more on 4-Bit Up/Down Counter in Cadence Virtuoso</p>
                         </div>
                     </a>
-                    <a href="#projects" class="hero-grid-item" style="background-image: url('d3image.png');" data-project="UST Hackathon - Smart Healthcare Optimizer">
+                    <a href="#projects" class="hero-grid-item" style="background-image: url('images/31L.png');" data-project="RISC-V Single Cycle Processor">
                         <div class="hero-hover-overlay">
-                            <p class="hero-hover-text">See more about Grover's Algorithm in my D3 Hackathon Details</p>
+                            <p class="hero-hover-text">See more on RISC-V Single Cycle Processor</p>
                         </div>
                     </a>
                 </div>
@@ -156,6 +160,14 @@
         </div>
     </div>
 
+    <!-- YouTube Viewer Modal -->
+    <div id="youtubeModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="youtube-modal-close">&times;</span>
+            <iframe id="youtubeModalFrame" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <!-- Video Viewer Modal -->
     <div id="videoModal" class="video-modal">
         <div class="video-modal-content">
@@ -183,7 +195,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
 

@@ -53,6 +53,22 @@ const projects = [
         }
     },
     {
+        title: "Multi-Modal Edge Computing Platform (Senior Design)",
+        description: "Architected and deployed a real-time edge AI inspection system for pharmaceutical vial analysis as Team Lead, reducing latency, minimizing cloud dependency, and lowering the carbon footprint associated with centralized inference. Integrated Hailo AI hardware accelerator to offload YOLOv8 inference, improving throughput and power efficiency on the edge device. Implemented a custom client-server communication layer in C using POSIX TCP sockets with length-prefixed JSON framing. Contributed to a trigger-based OpenCV image capture pipeline and implemented parallel MLX90614 thermal sensor logging to enable synchronized multimodal defect analysis.",
+        tags: ["C", "TCP/IP", "I2C", "Edge AI", "YOLOv8", "Hailo", "OpenCV", "Embedded Systems"],
+        backgroundImage: "images/113project.png",
+        links: {
+            pdfs: [
+                { name: "Project Poster", url: "docs/MEC_Poster_EECS159B.pdf" }
+            ],
+            youtube: {
+                videoId: "OcZIMFXcgA0",
+                startTime: 13,
+                name: "Watch Demo"
+            }
+        }
+    },
+    {
         title: "Building Management System HVAC",
         description: "Constructed a makeshift Building Management System that included HVAC functionalities - desired temperature, determining when to turn heater/ac on/off, using API call from OpenWeatherApp to retrieve humidity data and then to calculate the feels like temperature. Implemented Ambient Lighting for when someone enters the room, and a security system for when the door is open/closed and for potential fires. All constructed onto a Raspberry Pi 5, with the freenove kit and implemented using python programming.",
         tags: ["Python", "Raspberry Pi", "IoT", "HVAC", "API Integration", "Embedded Systems", "Sensors"],
@@ -176,6 +192,22 @@ function createProjectCard(project) {
                     Watch Demo
                 </a>
             `);
+        }
+        if (project.links.youtube) {
+            const yt = project.links.youtube;
+            const videoId = yt.videoId || (yt.url && yt.url.match(/(?:v=|\/)([\w-]{11})(?:[\?&]|$)/)?.[1]);
+            const startTime = yt.startTime || 0;
+            const ytName = yt.name || 'Watch Demo';
+            if (videoId) {
+                linkElements.push(`
+                    <a href="#" class="project-link secondary youtube-modal-trigger" data-youtube-id="${videoId}" data-youtube-start="${startTime}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        ${ytName}
+                    </a>
+                `);
+            }
         }
         if (project.links.demo) {
             // Support both string URL and object with custom name
@@ -384,6 +416,12 @@ document.addEventListener('keydown', (e) => {
             }
             const videoSource = document.getElementById('videoModalSource');
             if (videoSource) videoSource.src = '';
+        }
+        const youtubeModal = document.getElementById('youtubeModal');
+        if (youtubeModal && youtubeModal.classList.contains('active')) {
+            youtubeModal.classList.remove('active');
+            const youtubeFrame = document.getElementById('youtubeModalFrame');
+            if (youtubeFrame) youtubeFrame.src = '';
         }
     }
 });
@@ -599,6 +637,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoModal.classList.add('active');
                 videoPlayer.play();
             }
+            return;
+        }
+        const youtubeTrigger = e.target.closest('.youtube-modal-trigger');
+        if (youtubeTrigger) {
+            e.preventDefault();
+            const videoId = youtubeTrigger.getAttribute('data-youtube-id');
+            const startTime = youtubeTrigger.getAttribute('data-youtube-start') || 0;
+            const youtubeModal = document.getElementById('youtubeModal');
+            const youtubeFrame = document.getElementById('youtubeModalFrame');
+            if (videoId && youtubeModal && youtubeFrame) {
+                youtubeFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&cc_load_policy=1&start=${startTime}&mute=1`;
+                youtubeModal.classList.add('active');
+            }
         }
     });
     
@@ -639,6 +690,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (videoModal) {
         videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal) closeVideoModal();
+        });
+    }
+    
+    // YouTube modal close
+    const youtubeModal = document.getElementById('youtubeModal');
+    const youtubeModalClose = document.querySelector('.youtube-modal-close');
+    const youtubeModalFrame = document.getElementById('youtubeModalFrame');
+    
+    function closeYoutubeModal() {
+        if (youtubeModal) youtubeModal.classList.remove('active');
+        if (youtubeModalFrame) youtubeModalFrame.src = '';
+    }
+    
+    if (youtubeModalClose) {
+        youtubeModalClose.addEventListener('click', closeYoutubeModal);
+    }
+    if (youtubeModal) {
+        youtubeModal.addEventListener('click', (e) => {
+            if (e.target === youtubeModal) closeYoutubeModal();
         });
     }
 });
