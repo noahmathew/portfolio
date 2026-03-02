@@ -18,6 +18,23 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 // Projects data - Add your projects here
 const projects = [
     {
+        title: "Multi-Modal Edge Computing Platform (Senior Design)",
+        description: "Architected and deployed a real-time edge AI inspection system for pharmaceutical vial analysis as Team Lead, reducing latency, minimizing cloud dependency, and lowering the carbon footprint associated with centralized inference. Integrated Hailo AI hardware accelerator to offload YOLOv8 inference, improving throughput and power efficiency on the edge device. Implemented a custom client-server communication layer in C using POSIX TCP sockets with length-prefixed JSON framing. Contributed to a trigger-based OpenCV image capture pipeline and implemented parallel MLX90614 thermal sensor logging to enable synchronized multimodal defect analysis.",
+        tags: ["C", "TCP/IP", "I2C", "Edge AI", "YOLOv8", "Hailo", "OpenCV", "Embedded Systems"],
+        backgroundImage: "images/113project.png",
+        youtubeCardVideo: true,
+        links: {
+            pdfs: [
+                { name: "Project Poster", url: "docs/MEC_Poster_EECS159B.pdf" }
+            ],
+            youtube: {
+                videoId: "OcZIMFXcgA0",
+                startTime: 13,
+                name: "Watch Demo"
+            }
+        }
+    },
+    {
         title: "4-Bit Up/Down Counter in Cadence Virtuoso",
         description: "Designed, implemented, and verified a hierarchical 4-bit synchronous up/down counter using custom CMOS logic in Cadence Virtuoso. The design was built from the transistor level upward, beginning with inverter, NAND, OR, and JK flip-flop building blocks, which were then hierarchically integrated to form the complete counter. A single global clock drives all flip-flops, while combinational gating logic controls synchronous up/down counting behavior. Full-custom physical layouts were created for each sub-block with proper transistor sizing, well placement, power routing, and interconnect strategy. The complete design passed Design Rule Check (DRC) and Layout Versus Schematic (LVS) verification, confirming correct device connectivity, pin definitions, and net consistency across hierarchical levels. Parasitic extraction was performed to evaluate post-layout effects. Functional correctness was validated through transient simulations, demonstrating correct binary counting from 0000 → 1111 during up-count mode and 1111 → 0000 during down-count mode, synchronized to the clock signal.",
         tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "JK Flip-Flop", "Synchronous Design"],
@@ -51,22 +68,6 @@ const projects = [
             youtube: {
                 videoId: "ZiYhyOfSrfo",
                 startTime: 0,
-                name: "Watch Demo"
-            }
-        }
-    },
-    {
-        title: "Multi-Modal Edge Computing Platform (Senior Design)",
-        description: "Architected and deployed a real-time edge AI inspection system for pharmaceutical vial analysis as Team Lead, reducing latency, minimizing cloud dependency, and lowering the carbon footprint associated with centralized inference. Integrated Hailo AI hardware accelerator to offload YOLOv8 inference, improving throughput and power efficiency on the edge device. Implemented a custom client-server communication layer in C using POSIX TCP sockets with length-prefixed JSON framing. Contributed to a trigger-based OpenCV image capture pipeline and implemented parallel MLX90614 thermal sensor logging to enable synchronized multimodal defect analysis.",
-        tags: ["C", "TCP/IP", "I2C", "Edge AI", "YOLOv8", "Hailo", "OpenCV", "Embedded Systems"],
-        backgroundImage: "images/113project.png",
-        links: {
-            pdfs: [
-                { name: "Project Poster", url: "docs/MEC_Poster_EECS159B.pdf" }
-            ],
-            youtube: {
-                videoId: "OcZIMFXcgA0",
-                startTime: 13,
                 name: "Watch Demo"
             }
         }
@@ -147,10 +148,13 @@ function createProjectCard(project) {
     
     // Use video for display if available, otherwise background image
     const hasVideo = project.video;
+    const hasYoutubeCard = project.youtubeCardVideo && project.links?.youtube?.videoId;
     if (hasVideo) {
         card.setAttribute('data-has-video', 'true');
         card.setAttribute('data-video-url', encodeUrlPath(project.video));
         card.setAttribute('data-video-poster', project.videoPoster ? encodeUrlPath(project.videoPoster) : '');
+    } else if (hasYoutubeCard) {
+        card.setAttribute('data-has-youtube-card', 'true');
     } else if (project.backgroundImage) {
         const style = document.createElement('style');
         style.textContent = `
@@ -301,6 +305,13 @@ function createProjectCard(project) {
         </div>
     ` : '';
 
+    const yt = hasYoutubeCard ? project.links.youtube : null;
+    const youtubeCardHTML = hasYoutubeCard && yt ? `
+        <div class="project-card-youtube">
+            <iframe src="https://www.youtube.com/embed/${yt.videoId}?autoplay=1&cc_load_policy=1&loop=1&playlist=${yt.videoId}&mute=1&start=${yt.startTime || 0}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    ` : '';
+
     card.innerHTML = `
         <div class="project-card-content">
             ${tagsHTML}
@@ -309,6 +320,7 @@ function createProjectCard(project) {
             ${linksHTML}
         </div>
         ${videoHTML}
+        ${youtubeCardHTML}
     `;
 
     return card;
