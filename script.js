@@ -342,7 +342,12 @@ function renderProjects() {
     }
 
     projectsGrid.innerHTML = '';
-    projects.forEach(project => {
+    const sortedProjects = [...projects].sort((a, b) => {
+        if (a.title === 'Multi-Modal Edge Computing Platform (Senior Design)') return -1;
+        if (b.title === 'Multi-Modal Edge Computing Platform (Senior Design)') return 1;
+        return 0;
+    });
+    sortedProjects.forEach(project => {
         const card = createProjectCard(project);
         projectsGrid.appendChild(card);
     });
