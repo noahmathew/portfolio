@@ -36,6 +36,18 @@ const projects = [
         }
     },
     {
+        title: "Real-Time Subtitle Smart Glasses System",
+        description: "Built a real-time subtitle pipeline capturing smartphone speech, translating text through a C++ server backend, and streaming translated subtitles to an ESP32-based wearable display system. Implemented UDP networking between the C++ server and ESP32 to deliver translated subtitle packets and render them on an SSD1306 OLED near-eye display integrated with an optical beam splitter.",
+        tags: ["C++", "ESP32", "UDP", "Speech-to-Text", "OLED", "Embedded Systems", "IoT"],
+        backgroundImage: "images/smartglasses_flowchart.png",
+        links: {
+            github: "https://github.com/noahmathew/SmartGlasses_LiveTranslation",
+            pdfs: [
+                { name: "Presentation", url: "docs/Smart Glasses Presentation.pdf" }
+            ]
+        }
+    },
+    {
         title: "4-Bit Up/Down Counter in Cadence Virtuoso",
         description: "Designed, implemented, and verified a hierarchical 4-bit synchronous up/down counter using custom CMOS logic in Cadence Virtuoso. The design was built from the transistor level upward, beginning with inverter, NAND, OR, and JK flip-flop building blocks, which were then hierarchically integrated to form the complete counter. A single global clock drives all flip-flops, while combinational gating logic controls synchronous up/down counting behavior. Full-custom physical layouts were created for each sub-block with proper transistor sizing, well placement, power routing, and interconnect strategy. The complete design passed Design Rule Check (DRC) and Layout Versus Schematic (LVS) verification, confirming correct device connectivity, pin definitions, and net consistency across hierarchical levels. Parasitic extraction was performed to evaluate post-layout effects. Functional correctness was validated through transient simulations, demonstrating correct binary counting from 0000 → 1111 during up-count mode and 1111 → 0000 during down-count mode, synchronized to the clock signal.",
         tags: ["Cadence Virtuoso", "CMOS", "VLSI", "Digital Design", "DRC", "LVS", "JK Flip-Flop", "Synchronous Design"],
