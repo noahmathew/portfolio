@@ -75,6 +75,7 @@ const projects = [
         tags: ["ArduPilot", "OpenCV", "OCR", "Python", "STM32", "ESP32", "Drones", "Embedded Systems"],
         youtubeCardVideo: true,
         links: {
+            github: "https://github.com/noahmathew/Drone_Sign_Detection",
             youtube: {
                 videoId: "6jjfGAVwbCo",
                 startTime: 0,
@@ -158,6 +159,11 @@ const projects = [
     }
 ];
 
+// Helper function to create a URL-safe project id from title
+function projectSlug(title) {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 // Helper function to encode URL paths properly
 function encodeUrlPath(url) {
     // Split by '/' and encode each part separately
@@ -172,6 +178,7 @@ function encodeUrlPath(url) {
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'project-card';
+    card.id = `project-${projectSlug(project.title)}`;
     
     // Use video for display if available, otherwise background image
     const hasVideo = project.video;
@@ -596,7 +603,20 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const projectTitle = item.getAttribute('data-project');
-            
+            const projectCard = document.getElementById(`project-${projectSlug(projectTitle)}`);
+
+            if (projectCard) {
+                projectCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                projectCard.style.transition = 'all 0.3s ease';
+                projectCard.style.transform = 'scale(1.05)';
+                projectCard.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+                setTimeout(() => {
+                    projectCard.style.transform = 'scale(1)';
+                    projectCard.style.boxShadow = '';
+                }, 1000);
+                return;
+            }
+
             // Scroll to projects section
             const projectsSection = document.getElementById('projects');
             if (projectsSection) {
