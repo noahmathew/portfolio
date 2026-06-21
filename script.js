@@ -70,6 +70,19 @@ const projects = [
         }
     },
     {
+        title: "Autonomous Sign Detection Drone",
+        description: "• Used ArduPilot's Mission Planner to setup geofencing, and setup waypoints to coordinate autonomous flights.<br>• Post-processed videos from the FPV Monitor to detect text from public signages using OpenCV and OCR, scripted in Python.<br>• Configured using an STM32 as the flight controller and ESP32 for antenna WIFI support.",
+        tags: ["ArduPilot", "OpenCV", "OCR", "Python", "STM32", "ESP32", "Drones", "Embedded Systems"],
+        youtubeCardVideo: true,
+        links: {
+            youtube: {
+                videoId: "6jjfGAVwbCo",
+                startTime: 0,
+                name: "Watch Demo"
+            }
+        }
+    },
+    {
         title: "UST Hackathon - Smart Healthcare Optimizer",
         description: "Developed a Smart Healthcare Optimizer Website that uses both Quantum Computing and AI to help patients schedule their appointments efficiently. Implemented Random Forest Models along with TensorFlow frameworks to forecast the traffic for appointment scheduling for patients and a quantum-scheduler by using Grover's algorithm to minimize on-going delays that come from change of staff, patients that are in critical conditions, medical inventory, and more to ensure every patient is directed to the right doctor, room, and treatment at an efficient rate all while ensuring that the data is within HIPPA compliance. Showcased the scalability of our prototype and the potential problem-solving that can positively impact the healthcare industry.",
         tags: ["Quantum Computing", "AI", "Machine Learning", "TensorFlow", "Random Forest", "Grover's Algorithm", "Healthcare", "Web Development"],
@@ -356,8 +369,15 @@ function renderProjects() {
 
     projectsGrid.innerHTML = '';
     const sortedProjects = [...projects].sort((a, b) => {
-        if (a.title === 'Multi-Modal Edge Computing Platform (Senior Design)') return -1;
-        if (b.title === 'Multi-Modal Edge Computing Platform (Senior Design)') return 1;
+        const featuredOrder = [
+            'Multi-Modal Edge Computing Platform (Senior Design)',
+            'Autonomous Sign Detection Drone'
+        ];
+        const aIndex = featuredOrder.indexOf(a.title);
+        const bIndex = featuredOrder.indexOf(b.title);
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
         return 0;
     });
     sortedProjects.forEach(project => {
