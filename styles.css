@@ -227,10 +227,12 @@ body {
     opacity: 0;
     transition: var(--transition);
     z-index: 2;
+    pointer-events: none;
 }
 
 .hero-grid-item:hover .hero-hover-overlay {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .hero-hover-text {
@@ -428,6 +430,7 @@ body {
     height: auto;
     overflow: visible;
     position: relative;
+    scroll-margin-top: 100px;
 }
 
 .project-card::before {
@@ -570,7 +573,9 @@ body {
 }
 
 .project-card-content .project-description,
-.project-card-content p.project-description {
+.project-card-content p.project-description,
+.project-card-content .project-description-list,
+.project-card-content .project-description-list li {
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
@@ -613,6 +618,20 @@ body {
     margin-bottom: 1.5rem;
     flex-grow: 1;
     line-height: 1.6;
+}
+
+.project-description-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style-type: disc;
+}
+
+.project-description-list li {
+    margin-bottom: 0.75rem;
+}
+
+.project-description-list li:last-child {
+    margin-bottom: 0;
 }
 
 .project-links {

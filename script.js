@@ -71,7 +71,11 @@ const projects = [
     },
     {
         title: "Autonomous Sign Detection Drone",
-        description: "• Used ArduPilot's Mission Planner to setup geofencing, and setup waypoints to coordinate autonomous flights.<br>• Post-processed videos from the FPV Monitor to detect text from public signages using OpenCV and OCR, scripted in Python.<br>• Configured using an STM32 as the flight controller and ESP32 for antenna WIFI support.",
+        description: `<ul class="project-description-list">
+<li>Used ArduPilot's Mission Planner to setup geofencing, and setup waypoints to coordinate autonomous flights.</li>
+<li>Post-processed videos from the FPV Monitor to detect text from public signages using OpenCV and OCR, scripted in Python.</li>
+<li>Configured using an STM32 as the flight controller and ESP32 for antenna WIFI support.</li>
+</ul>`,
         tags: ["ArduPilot", "OpenCV", "OCR", "Python", "STM32", "ESP32", "Drones", "Embedded Systems"],
         youtubeCardVideo: true,
         links: {
@@ -346,11 +350,15 @@ function createProjectCard(project) {
         </div>
     ` : '';
 
+    const descriptionHTML = project.description.includes('<ul')
+        ? `<div class="project-description">${project.description}</div>`
+        : `<p class="project-description">${project.description}</p>`;
+
     card.innerHTML = `
         <div class="project-card-content">
             ${tagsHTML}
             <h3 class="project-title">${project.title}</h3>
-            <p class="project-description">${project.description}</p>
+            ${descriptionHTML}
             ${linksHTML}
         </div>
         ${videoHTML}
@@ -394,7 +402,7 @@ function renderProjects() {
 }
 
 // Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]:not(.hero-grid-item)').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
@@ -603,7 +611,11 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const projectTitle = item.getAttribute('data-project');
-            const projectCard = document.getElementById(`project-${projectSlug(projectTitle)}`);
+            const href = item.getAttribute('href');
+            const projectId = href && href.startsWith('#project-')
+                ? href.slice(1)
+                : `project-${projectSlug(projectTitle)}`;
+            const projectCard = document.getElementById(projectId);
 
             if (projectCard) {
                 projectCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
