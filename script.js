@@ -127,6 +127,17 @@ const projects = [
         }
     },
     {
+        title: "ALU Design on Basys 3 FPGA",
+        description: "Implemented a 32-bit arithmetic logic unit on the Basys 3 FPGA and validated its outputs across 15 hardware test cases, checking result values and zero, carry-out, and overflow flags. Used the board's switches and LEDs to test the ALU in hardware. Analyzed timing constraints, FPGA resource utilization, power consumption, and synthesized schematics for counter and MIPS pipelined processor designs as part of the lab.",
+        tags: ["FPGA", "Basys 3", "Digital Logic", "ALU", "Hardware Validation", "Synthesis"],
+        backgroundImage: "images/alu-basys3.jpg",
+        links: {
+            pdfs: [
+                { name: "See Lab Report", url: "docs/ALU Design on Basys 3 FPGA - Lab Report.pdf" }
+            ]
+        }
+    },
+    {
         title: "Software Engineering Team Project in C",
         description: "Chess Game: Was responsible in creating Computer decision-making logic. Implemented using the minimax algorithm and alpha-beta pruning. Online Poker Game: Was responsible in establishing client-server communication. Applied socket programming skills and the fundamentals of TCP protocols.",
         tags: ["C", "Algorithms", "Minimax", "Alpha-Beta Pruning", "Socket Programming", "TCP", "Client-Server"],
@@ -580,9 +591,9 @@ const interestData = {
         title: "Firmware Engineering",
         description: "My interests center on firmware engineering with a focus on designing reliable low power real time software that operates close to the hardware. Through academic coursework and industry experience I have developed embedded firmware for microcontrollers and embedded Linux systems including device configuration peripheral control and sensor interfacing. I am particularly interested in writing efficient maintainable firmware that manages memory timing and hardware resources while supporting scalable and intelligent system level behavior."
     },
-    cad: {
-        title: "CAD Design; 3D Modeling",
-        description: "My interests center on CAD design and 3D modeling with a focus on creating accurate functional representations of hardware systems for prototyping simulation and deployment. Through academic and industry experience I have applied these skills across multiple domains including game design and simulation in Unity 3D modeling and automation in Blender and hardware design using Cadence and Vivado. I am particularly interested in integrating three dimensional and electronic design workflows with system level constraints such as manufacturability hardware integration and performance optimization to support reliable and scalable system development."
+    pcb: {
+        title: "PCB & IC Design",
+        description: "My interests center on PCB and integrated circuit design, with a focus on building reliable hardware for embedded systems. Through academic coursework and hands-on projects, I have designed CMOS circuits using Cadence and explored transistor behavior using LTSpice. I am particularly interested in circuit design, board layout, and the tradeoffs between power, performance, manufacturability, and hardware integration."
     },
     architecture: {
         title: "Computer Architecture; Semiconductors",
@@ -844,4 +855,3 @@ window.addProject = function(project) {
     projects.push(project);
     renderProjects();
 };
-
