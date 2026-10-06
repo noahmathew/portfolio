@@ -39,7 +39,7 @@ const projects = [
         title: "Real-Time Subtitle Smart Glasses System",
         description: "Built a real-time subtitle pipeline capturing smartphone speech, translating text through a C++ server backend, and streaming translated subtitles to an ESP32-based wearable display system. Implemented UDP networking between the C++ server and ESP32 to deliver translated subtitle packets and render them on an SSD1306 OLED near-eye display integrated with an optical beam splitter.",
         tags: ["C++", "ESP32", "UDP", "Speech-to-Text", "OLED", "Embedded Systems", "IoT"],
-        backgroundImage: "images/smartglasses_flowchart.png",
+        backgroundImage: "images/smartglasses_flowchart.png?v=2",
         links: {
             github: "https://github.com/noahmathew/SmartGlasses_LiveTranslation",
             pdfs: [

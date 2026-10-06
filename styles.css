@@ -293,22 +293,23 @@ body {
 }
 
 
-.about-content {
-    max-width: 1200px;
-    margin: 3rem auto 0;
+.about-header {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.about-image-container {
-    flex-shrink: 0;
+.about-header .section-title {
+    width: auto;
+    margin: 0;
+    text-align: left;
 }
 
 .about-image {
-    max-width: 300px;
-    width: 100%;
+    width: 200px;
+    max-width: 40%;
     height: auto;
     border-radius: 12px;
     box-shadow: var(--shadow-lg);
@@ -329,6 +330,11 @@ body {
 .interests {
     flex: 1;
     position: relative;
+}
+
+.interests-section {
+    padding: 4rem 0 6rem;
+    background: var(--bg-primary);
 }
 
 /* Pair each part of the biography with its institutions. */
@@ -362,12 +368,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
     padding: 1rem;
-    background: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
     min-width: 0;
+}
+
+.education-logos img {
+    mix-blend-mode: multiply;
+}
+
+.education-logos .about-logo {
+    background-color: var(--bg-primary);
 }
 
 .about-logo img {
@@ -385,13 +395,6 @@ body {
 .employer-logos .ust-logo {
     width: 110px;
     height: 110px;
-}
-
-.about-logo figcaption {
-    font-size: 0.75rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-    text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -1134,16 +1137,6 @@ body {
 
     .interests-list {
         grid-template-columns: 1fr;
-    }
-
-    .about-content {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .about-image {
-        max-width: 250px;
     }
 
     .projects-grid {
