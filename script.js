@@ -15,6 +15,27 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
+// Dismiss the contact dropdown after a selection, outside click, or Escape.
+const contactTab = document.querySelector('.contact-tab');
+if (contactTab) {
+    contactTab.querySelectorAll('.contact-link').forEach(link => {
+        link.addEventListener('click', () => {
+            contactTab.open = false;
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+    document.addEventListener('click', (event) => {
+        if (!contactTab.contains(event.target)) contactTab.open = false;
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && contactTab.open) {
+            contactTab.open = false;
+            contactTab.querySelector('summary').focus();
+        }
+    });
+}
+
 // Projects data - Add your projects here
 const projects = [
     {
